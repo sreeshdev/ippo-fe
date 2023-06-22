@@ -1,0 +1,19 @@
+.header {
+  color: #fff;
+  font-weight: 600;
+  display: flex;
+  gap: 2vw;
+  font-size: 1vw;
+  padding: 2vw;
+  .eachHead {
+    color: #fff;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+  .active {
+    text-decoration: underline;
+  }
+}
