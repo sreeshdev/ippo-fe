@@ -2,6 +2,6 @@
 
 Password Tester
 
-### `yarn install`
+### `yarn` - which will instal all dependencies
 
 ### `yarn start` - to start the application
