@@ -1,15 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { services } from "../../services";
 import "./styles.scss";
 import { toast } from "react-toastify";
+
 const DataViewer = () => {
   const [data, setData] = useState([]);
-
-  useEffect(() => {
-    getTestData();
-  }, []);
-
-  const getTestData = () => {
+  const getTestData = useCallback(() => {
     //Get Data from Backend
     services.getTestData(
       {},
@@ -18,14 +14,18 @@ const DataViewer = () => {
       handleError,
       () => {}
     );
-  };
+  }, []);
+
+  useEffect(() => {
+    getTestData();
+  }, [getTestData]);
 
   const handleGetSuccess = (data) => {
     setData(data.data);
   };
 
   const handleError = (error) => {
-    toast.error(error.response.data.message);
+    toast.error(error.response?.data?.message || "Something went wrong");
   };
 
   return (
@@ -39,8 +39,8 @@ const DataViewer = () => {
           </tr>
         </thead>
         <tbody>
-          {data.map(({ value, type, requiredLength }) => (
-            <tr>
+          {data?.map(({ value, type, requiredLength, _id }) => (
+            <tr key={_id}>
               <td>{value}</td>
               <td>{type}</td>
               <td>{requiredLength}</td>

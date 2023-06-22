@@ -1,7 +1,16 @@
 import React from "react";
 import "./styles.scss";
 
-const Input = ({ label, type, name, value, onChange, required, ...props }) => {
+const Input = ({
+  label,
+  type,
+  name,
+  value,
+  onChange,
+  required,
+  testId,
+  ...props
+}) => {
   return (
     <div className="InputContainer">
       {label && (
@@ -13,6 +22,7 @@ const Input = ({ label, type, name, value, onChange, required, ...props }) => {
         type={type || "text"}
         {...props}
         id={name}
+        data-testid={testId}
         value={value}
         onChange={onChange}
       />

@@ -11,11 +11,13 @@ const App = () => {
       path: "/",
       label: "Tester",
       component: <PasswordTester />,
+      key: "tester",
     },
     {
       path: "/testData",
       label: "Test Data",
       component: <DataViewer />,
+      key: "testData",
     },
   ];
   return (
@@ -34,8 +36,8 @@ const App = () => {
       />
       <Header routers={routers} />
       <Routes>
-        {routers.map(({ path, component }) => (
-          <Route exact path={path} element={component} />
+        {routers.map(({ path, component, key }) => (
+          <Route exact key={key} path={path} element={component} />
         ))}
       </Routes>
     </div>

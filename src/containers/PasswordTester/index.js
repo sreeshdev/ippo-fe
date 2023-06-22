@@ -42,7 +42,6 @@ const PasswordTester = () => {
       } else if (!hasUppercase && /[A-Z]/.test(char)) {
         hasUppercase = true;
       } else if (!hasDigit && /[0-9]/.test(char)) {
-        console.log("DIGIT");
         hasDigit = true;
       }
 
@@ -114,11 +113,12 @@ const PasswordTester = () => {
       <div className="inputContent">
         <Input
           label={"Password"}
+          testId={"password-input"}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
         <div className="output">
-          Required length: {requiredLength}{" "}
+          Required length: <span data-testid="output">{requiredLength}</span>
           <div className="iconContainer">
             <img
               className="icon"
@@ -129,7 +129,9 @@ const PasswordTester = () => {
             {showError && <HintPopover errors={errors} />}
           </div>
         </div>
-        <div className="outputType">{requiredLength ? "Weak" : "Strong"}</div>
+        <div className="outputType" data-testid="result">
+          {requiredLength ? "Weak" : "Strong"}
+        </div>
       </div>
       <button
         disabled={password.length === 0}
